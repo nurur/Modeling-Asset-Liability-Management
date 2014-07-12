@@ -1,0 +1,51 @@
+# almLP02
+# Script File 
+# Stochastic ALM model 
+# 4 assets (i) and 2 time stages (t) 
+# Transaction cost (g) is 2.5% of the value of each trade 
+# Initial income (F) is 150,000 (in $US)
+
+
+reset;
+reset;
+
+
+model almLP02.mod;
+data almLP02.dat;
+
+
+
+option display_eps 0.0001;
+option display_precision 6;
+option print_precision 6;
+option output_precision 6;
+#option omit_zero_rows 1;
+#option presolve_inteps;
+option solve_result_table;
+#option sstatus_table;
+
+
+display solve_result_num, solve_result;
+display solve_message;
+display solve_exitcode;
+
+option show_stats 1;
+#option cplex_options 'writeprob myfile.sav';
+option solver cplex;
+solve;
+
+
+#print {t in tp, a in assets} : amounthold[t,a], amountbuy[t,a], amountsell[t,a];
+#display {j in 1.._nvars: _var[j].sstatus = "bas"}  (_varname[j], _var[j]);
+#display _conname, _con.slack, _con.sstatus;
+#display {j in 1.._nvars: _var[j].astatus = "bas"}  (_varname[j], _var[j]);
+#display _conname, _con.slack, _con.astatus;
+
+display _varname, _var, _var.lb, _var.ub, _var.status; 
+
+
+
+printf '--------------------------\n';
+printf 'Intial Funding: %i\n',   F[1]; 
+printf 'Final Wealth  : %i\n', wealth; 
+printf '--------------------------\n';

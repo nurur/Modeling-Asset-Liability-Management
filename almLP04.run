@@ -1,0 +1,50 @@
+reset;
+reset;
+
+
+
+# Read model and data file 
+model almLP04.mod;
+data  almLP04.dat;
+
+
+# Options to display 
+option display_eps 0.0001;
+option display_precision 6;
+option print_precision 6;
+option output_precision 6;
+#option omit_zero_rows 1;
+#option presolve_inteps;
+option solve_result_table;
+
+display solve_result_num, solve_result;
+display solve_message;
+display solve_exitcode;
+
+
+# Solve using cplex 
+option solver cplex;
+solve;
+
+
+#display _varname, _var;
+
+
+printf 'Amount to Hold : \n'; 
+display H;
+printf 'Amount to Buy  : \n'; 
+display B;
+printf 'Amount to Sell : \n'; 
+display S;
+
+
+printf '------------------------------\n';
+printf 'Initial Funding: %i\n',      F[1]; 
+printf '------------------------------\n';
+printf 'Initial Assets Prices: \n'; display x1; 
+printf 'Final Wealth  : %i\n',     wealth; 
+printf '------------------------------\n';
+
+
+display s;
+display y;

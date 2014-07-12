@@ -1,0 +1,33 @@
+reset;
+reset;
+
+
+
+# Read model and data file 
+model almLP03.mod;
+data  almLP03.dat;
+
+
+# Options to display 
+option display_eps 0.0001;
+option display_precision 6;
+option print_precision 6;
+option output_precision 6;
+#option omit_zero_rows 1;
+#option presolve_inteps;
+option solve_result_table;
+
+display solve_result_num, solve_result;
+display solve_message;
+display solve_exitcode;
+
+
+# Solve using cplex 
+option solver cplex;
+solve;
+
+
+display _varname, _var;
+
+display uprob;
+display budget;
