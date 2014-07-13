@@ -1,3 +1,6 @@
+Modeling Asset-Liability Management 
+
+
 This repository contains modeling of Asset-Liability Managment of an insurance 
 company using AMPL programing language. While the complete model implemeneted 
 in this project represent realistic scenario, I used synthetic data to reproduce 
